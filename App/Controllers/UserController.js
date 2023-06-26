@@ -2,20 +2,11 @@
 
 const User = require ('../Models/User');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
-
+const {generateCustomId} = require('../../utils/GenerateIDUser');
 
 const UserController = {};
-
-//generate userId
-function generateCustomId(year, type, index) {
-    const indexStr = index.toString().padStart(3, '0');
-    const customId = `${year}${type}${indexStr}`;
-    return customId;
-  };
-
 
 // Create user
 UserController.createUser = async (req, res) => {

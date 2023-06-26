@@ -61,7 +61,7 @@ Before running the application, ensure that you have the following dependencies 
       "email": "john.doe@example.com",
       "password": "$2a$10$TmuOZ6vugCN1rfeoZTkZ/uuBc55WkNSvMw7a0nGMNGnOV0qJyWXFm",
       "userId": "23CON001",
-      "userType": "CON",
+      "userType": "SAD",
       "file": "1624314807047--profile.jpg",
       "createdAt": "2023-06-21T12:20:38.074Z",
       "updatedAt": "2023-06-21T12:20:38.074Z",
