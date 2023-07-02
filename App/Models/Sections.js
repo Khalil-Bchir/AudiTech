@@ -11,11 +11,6 @@ const sectionSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    type: {
-        type: String,
-        enum: ['FD','HD'], // FD as Finance departement, HD as Health departement
-        required:true
-    },
     description: {
         type: String,
         required: true,

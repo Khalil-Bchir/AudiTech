@@ -69,6 +69,30 @@ Before running the application, ensure that you have the following dependencies 
     }
   }
   ```
+  ### Section Creation example
+
+- **Endpoint:** POST `/api/Section`
+- **Description:** Creates a new section.
+- **Request Body:**
+
+  ```json
+  {
+    "name": "health departement 101",
+    "description": "description for section"
+  }
+  ```
+
+- **Response:**
+
+  ```json
+  {
+    "sectionID": "SEC004",
+    "name": "health departement 101",
+    "description": "description for section",
+    "_id": "64a1e6d9af7add10bc35abd0",
+    "__v": 0
+  }
+  ```
 
 ## API Endpoints
 
@@ -79,6 +103,11 @@ Before running the application, ensure that you have the following dependencies 
 - `DELETE /api/user/:userId`: Delete a user.
 - `POST /api/logIn`: Log in with email and password.
 - `POST /api/logOut`: Log out.
+- `POST /api/Sections`: Create new section.
+- `GET /api/sections`: Retrieve sections list.
+- `GET /api/Section/:sectionID`: Retrieves single Section details based on its id provided.
+- `PUT /api/Section/:sectionID`: Update a section.
+- `DELETE /api/Section/:sectionID`: Delete a section
 
 The API will be available at `http://localhost:3000/api`.
 ## File Uploads
@@ -96,4 +125,3 @@ User authentication is implemented using JSON Web Tokens (JWT). When logging in,
 ## Contributing
 
 Contributions to this user management system are welcome. If you find any issues or have suggestions for improvement, feel free to submit a pull request.
-This user management system is open-source and available under the [MIT License](https://opensource.org/licenses/MIT).

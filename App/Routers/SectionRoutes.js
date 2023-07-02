@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.post('/Section', SectionController.createSection); //create new section
 router.get('/Sections',SectionController.getSections); //get all sections
-router.get('/Section/:SectionID',SectionController.getSection); //get section by id
-router.put('/Section/:SectionID',SectionController.updateSection); // update section
-router.delete('/Section/:SectionID',SectionController.deleteSection); //delete section
+router.get('/Section/:sectionID',SectionController.getSection); //get section by id
+router.put('/Section/:sectionID',SectionController.updateSection); // update section
+router.delete('/Section/:sectionID',SectionController.deleteSection); //delete section
 
 module.exports = router;
