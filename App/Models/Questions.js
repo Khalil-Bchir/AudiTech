@@ -1,9 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const questionSchema = new mongoose.Schema({
-  section: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Section',
+  id: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  sectionID: {
+    type: String,
+    ref: "Section",
     required: true,
   },
   text: {
@@ -11,14 +16,16 @@ const questionSchema = new mongoose.Schema({
     required: true,
   },
   attributes: {
-    type: [{
-      name: { type: String, required: true },
-      value: { type: String, required: true },
-    }],
+    type: [
+      {
+        name: { type: String, required: true },
+        value: { type: String, required: false },
+      },
+    ],
     required: true,
   },
 });
 
-const Question = mongoose.model('Question', questionSchema);
+const Question = mongoose.model("Question", questionSchema);
 
 module.exports = Question;
