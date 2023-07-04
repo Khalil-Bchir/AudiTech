@@ -94,20 +94,84 @@ Before running the application, ensure that you have the following dependencies 
   }
   ```
 
+  ### Question Creation example
+
+- **Endpoint:** POST `/api/Question`
+- **Description:** Creates a new Question.
+- **Request Body:**
+
+  ```json
+  {
+    "section": "SEC002",
+    "text": "What is your Favorite food?",
+    "attributes": [
+        {
+            "name": "Category",
+            "value": "Preference"
+        },
+        {
+            "name": "Type",
+            "value": "Multiple Choice"
+        }
+    ]
+  }
+  ```
+
+- **Response:**
+
+  ```json
+  {
+    "questionID": "QST001",
+    "section": "SEC002",
+    "text": "whatisyourfavoritefood?",
+    "attributes": [
+        {
+            "name": "Category",
+            "value": "Preference",
+            "_id": "64a3fd1a97541cae1731f6b4"
+        },
+        {
+            "name": "Type",
+            "value": "Multiple Choice",
+            "_id": "64a3fd1a97541cae1731f6b5"
+        }
+    ],
+    "_id": "64a3fd1a97541cae1731f6b3",
+    "__v": 0
+  }
+  ```
+
 ## API Endpoints
+
+**User Endpoints:**
 
 - `POST /api/user`: Create a new user.
 - `GET /api/users`: Get all users.
 - `GET /api/user/:userId`: Get a user by ID.
 - `PUT /api/user/:userId`: Update a user.
 - `DELETE /api/user/:userId`: Delete a user.
+
+**Log Endpoints:**
+
 - `POST /api/logIn`: Log in with email and password.
 - `POST /api/logOut`: Log out.
+
+**Section Endpoints:**
+
 - `POST /api/Sections`: Create new section.
 - `GET /api/sections`: Retrieve sections list.
 - `GET /api/Section/:sectionID`: Retrieves single Section details based on its id provided.
 - `PUT /api/Section/:sectionID`: Update a section.
-- `DELETE /api/Section/:sectionID`: Delete a section
+- `DELETE /api/Section/:sectionID`: Delete a section.
+
+**Question Endpoints:**
+
+- `POST /api/Qusetion`: Create a new Qusetion.
+- `GET /api/Questions`: Get all Qusetions.
+- `GET /api/Qusetion/:questionID`: Get a Qusetion by questionID.
+- `PUT /api/Qusetion/:questionID`: Update a Qusetion.
+- `DELETE /api/Qusetion/:questionID`: Delete a Qusetion.
+
 
 The API will be available at `http://localhost:3000/api`.
 ## File Uploads

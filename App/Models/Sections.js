@@ -1,7 +1,8 @@
+//section model
 const mongoose = require("mongoose");
 
 const sectionSchema = new mongoose.Schema({
-  id: {
+  sectionID: {
     type: String,
     required: true,
     unique: true,

@@ -1,12 +1,13 @@
+//question model
 const mongoose = require("mongoose");
 
 const questionSchema = new mongoose.Schema({
-  id: {
+  questionID: {
     type: String,
     required: true,
     unique: true,
   },
-  sectionID: {
+  section: {
     type: String,
     ref: "Section",
     required: true,

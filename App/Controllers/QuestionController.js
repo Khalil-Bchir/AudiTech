@@ -1,3 +1,4 @@
+//question controller 
 const Section = require("../Models/Sections");
 const Question = require("../Models/Questions");
 const { generateCustomId } = require("../../utils/GenerateID");
@@ -17,17 +18,17 @@ QuestionController.createQuestion = async (req, res) => {
       return res.status(400).json({ message: "Question already exists" });
     }
 
-    const questionId = await generateCustomId("Question", "QUEST");
+    const questionId = await generateCustomId("Question", "QST", "questionID");
 
     // Create a new question with the generated ID and modified text
-    const section = await Section.findOne({id: req.body.sectionID});
+    const section = await Section.findOne({ sectionID: req.body.section });
     if (!section) {
       return res.status(400).json({ message: "Invalid section id" });
     }
-    
+
     const question = new Question({
-      id: questionId,
-      sectionID: section.id,
+      questionID: questionId,
+      section: section.sectionID,
       text: lowercaseText,
       attributes: req.body.attributes,
     });
@@ -40,7 +41,6 @@ QuestionController.createQuestion = async (req, res) => {
   }
 };
 
-
 // get all questions
 QuestionController.getAllQuestions = async (req, res) => {
   try {
@@ -52,10 +52,11 @@ QuestionController.getAllQuestions = async (req, res) => {
   }
 };
 
-// Get a single question by ID
+// Get a single question by questionID
 QuestionController.getQuestionById = async (req, res) => {
   try {
-    const question = await Question.findById(req.params.id);
+    const id = req.params.questionID;
+    const question = await Question.findOne({ questionID: id });
     if (!question) {
       return res.status(404).json({ message: "Question not found" });
     }
@@ -70,15 +71,27 @@ QuestionController.getQuestionById = async (req, res) => {
 QuestionController.updateQuestion = async (req, res) => {
   try {
     const { section, text, attributes } = req.body;
+    const id = req.params.questionID;
+    const question = await Question.findOne({ questionID: id });
 
-    const question = await Question.findById(req.params.id);
     if (!question) {
       return res.status(404).json({ message: "Question not found" });
     }
 
+    const lowercaseText = text.toLowerCase().replace(/\s/g, "");
+
+    // Check if a question with the same modified name already exists
+    const existingQuestion = await Question.findOne({
+      _id: { $ne: section._id }, // Exclude the current question from the check
+      text: lowercaseText
+    });
+    if (existingQuestion) {
+      return res.status(400).json({ message: "Question with the same name already exists" });
+    }
+
     // Update the question fields
     question.section = section;
-    question.text = text;
+    question.text = lowercaseText;
     question.attributes = attributes;
 
     const updatedQuestion = await question.save();
@@ -92,12 +105,11 @@ QuestionController.updateQuestion = async (req, res) => {
 // Delete a question
 QuestionController.deleteQuestion = async (req, res) => {
   try {
-    const question = await Question.findById(req.params.id);
+    const id = req.params.questionID;
+    const question = await Question.findOne({ questionID: id });
     if (!question) {
       return res.status(404).json({ message: "Question not found" });
     }
-
-    await question.remove();
     res.json({ message: "Question deleted successfully" });
   } catch (error) {
     console.error(error);
