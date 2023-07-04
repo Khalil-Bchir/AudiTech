@@ -69,6 +69,7 @@ Before running the application, ensure that you have the following dependencies 
     }
   }
   ```
+  
   ### Section Creation example
 
 - **Endpoint:** POST `/api/Section`
