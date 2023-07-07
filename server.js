@@ -18,7 +18,7 @@ app.use('/api',LogRoutes);
 app.use('/api/',SectionRoutes);
 app.use('/api',QuestionRoutes);
 
-mongoose.connect('mongodb+srv://auditech23:Nd5AQ66Ds40tKJRH@auditechcluster.tupfsuo.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
+mongoose.connect('mongodb+srv://prestigeproformation:prestigeproformation@cluster0.fwcivw3.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
     console.log('Connected to MongoDB');
     app.listen(3000, () => {
         console.log('Running on port 3000!');

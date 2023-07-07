@@ -20,7 +20,7 @@ const questionSchema = new mongoose.Schema({
     type: [
       {
         name: { type: String, required: true },
-        value: { type: String, required: false },
+        value: { type: String, default: "NULL"},
       },
     ],
     required: true,
