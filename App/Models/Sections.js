@@ -7,6 +7,11 @@ const sectionSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  heading: {
+    type: String,
+    ref: "Heading",
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -15,6 +20,7 @@ const sectionSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
+    unique: true,
   },
 });
 

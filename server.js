@@ -6,6 +6,7 @@ const UserRoutes = require ('./App/Routers/UserRoutes');
 const LogRoutes = require ('./App/Routers/logRoutes');
 const SectionRoutes = require ('./App/Routers/SectionRoutes');
 const QuestionRoutes = require ('./App/Routers/QuestionRoutes');
+const HeadingRoutes = require ('./App/Routers/HeadingRoutes');
 
 const cors = require('cors');
 const app = express();
@@ -17,8 +18,9 @@ app.use('/api',UserRoutes);
 app.use('/api',LogRoutes);
 app.use('/api/',SectionRoutes);
 app.use('/api',QuestionRoutes);
+app.use('/api/',HeadingRoutes);
 
-mongoose.connect('mongodb+srv://prestigeproformation:prestigeproformation@cluster0.fwcivw3.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
+mongoose.connect('mongodb+srv://prestigeproformation:prestigeproformation@cluster0.guzmh23.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
     console.log('Connected to MongoDB');
     app.listen(3000, () => {
         console.log('Running on port 3000!');

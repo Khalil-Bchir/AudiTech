@@ -2,6 +2,7 @@
 
 const Section = require("../Models/Sections");
 const Question = require("../Models/Questions");
+const Heading = require("../Models/Headings");
 const { generateCustomId } = require("../../utils/GenerateID");
 
 const SectionController = {};
@@ -9,9 +10,18 @@ const SectionController = {};
 // Create section
 SectionController.createSection = async (req, res) => {
   try {
+
+    const heading = await Heading.findOne({ headingID: req.body.heading });
+    if (!heading) {
+      return res.status(404).json({ message: "Heading not found" });
+    }
+
+    if (!heading.requireSections) {
+      return res.status(400).json({ message: "This heading does not require sections" });
+    }
     // Transform the name to lowercase and remove spaces
     const name = req.body.name;
-    const lowercaseName = name.toLowerCase().replace(/\s/g, "");
+    const lowercaseName = name.toLowerCase();
 
     // Check if a section with the same modified name already exists
     const existingSection = await Section.findOne({ name: lowercaseName });
@@ -19,7 +29,7 @@ SectionController.createSection = async (req, res) => {
       return res.status(400).json({ message: "Section with the same name already exists" });
     }
 
-    const sectionId = await generateCustomId("Section", "SEC", "sectionID");
+    const sectionId = await generateCustomId("Section", "S", "sectionID");
 
     // Create the new section with the generated ID and modified name
     const section = new Section({ ...req.body, sectionID: sectionId, name: lowercaseName });
@@ -66,7 +76,7 @@ SectionController.updateSection = async (req, res) => {
       return res.status(404).json({ message: "Section not found" });
     }
 
-    const lowercaseName = name.toLowerCase().replace(/\s/g, "");
+    const lowercaseName = name.toLowerCase();
 
     // Check if a section with the same modified name already exists
     const existingSection = await Section.findOne({

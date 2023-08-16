@@ -7,22 +7,32 @@ const questionSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  heading: {
+    type: String,
+    ref: 'Heading',
+    required: true,
+  },
   section: {
     type: String,
-    ref: "Section",
+    ref: 'Section',
+    required: false,
+  },
+  type: {
+    type: String,
+    enum: ['multiple', 'text'],
     required: true,
   },
-  text: {
+  questionText: {
     type: String,
     required: true,
   },
-  attributes: {
-    type: [
-      {
-        name: { type: String, required: true },
-        value: { type: String, default: "NULL"},
-      },
-    ],
+  choices: [
+    {
+      type: String,
+    },
+  ],
+  comment: {
+    type: String,
     required: true,
   },
 });
