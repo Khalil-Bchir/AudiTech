@@ -19,8 +19,7 @@ const sectionSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
-    unique: true,
+    required: false,
   },
 });
 

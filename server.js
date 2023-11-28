@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require('mongoose');
 
 const UserRoutes = require ('./App/Routers/UserRoutes');
+const CompanySheetRoutes = require ('./App/Routers/CompanySheetRoutes');
 const LogRoutes = require ('./App/Routers/logRoutes');
 const SectionRoutes = require ('./App/Routers/SectionRoutes');
 const QuestionRoutes = require ('./App/Routers/QuestionRoutes');
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api',UserRoutes);
+app.use('/api/',CompanySheetRoutes)
 app.use('/api',LogRoutes);
 app.use('/api/',SectionRoutes);
 app.use('/api',QuestionRoutes);
