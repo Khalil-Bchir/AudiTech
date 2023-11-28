@@ -1,7 +1,7 @@
-const AuditSheet = require('../models/AuditSheet');
+const AuditSheet = require('../Models/Audite');
 const User = require('../Models/User');
 const CompanySheet = require('../Models/CompanySheet');
-const Question = require('../models/Question');
+const Question = require('../Models/Questions');
 
 const AuditSheetController = {};
 
@@ -11,17 +11,17 @@ AuditSheetController.createAuditSheet = async (req, res) => {
     const { userId, companySheetId, answers } = req.body;
 
     // Check if the user and company sheet exist
-    const user = await User.findById(userId);
-    const companySheet = await CompanySheet.findById(companySheetId);
+    const userID = await User.findOne(userId);
+    const companySheetID = await CompanySheet.findOne(companySheetId);
 
-    if (!user || !companySheet) {
+    if (!userID || !companySheetID) {
       return res.status(404).json({ message: 'User or CompanySheet not found' });
     }
 
     // Create a new audit sheet
     const newAuditSheet = new AuditSheet({
-      user: userId,
-      companySheet: companySheetId,
+      user: userID,
+      companySheet: companySheetID,
       answers: answers.map(answer => ({
         question: answer.questionId,
         answer: answer.answer,
