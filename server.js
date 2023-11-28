@@ -8,6 +8,7 @@ const LogRoutes = require ('./App/Routers/logRoutes');
 const SectionRoutes = require ('./App/Routers/SectionRoutes');
 const QuestionRoutes = require ('./App/Routers/QuestionRoutes');
 const HeadingRoutes = require ('./App/Routers/HeadingRoutes');
+const AuditSheetRoutes = require ('./App/Routers/AuditeSheetRoutes');
 
 const cors = require('cors');
 const app = express();
@@ -15,12 +16,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api',UserRoutes);
-app.use('/api/',CompanySheetRoutes)
-app.use('/api',LogRoutes);
-app.use('/api/',SectionRoutes);
-app.use('/api',QuestionRoutes);
-app.use('/api/',HeadingRoutes);
+app.use('/api', UserRoutes);
+app.use('/api/', CompanySheetRoutes);
+app.use('/api', LogRoutes);
+app.use('/api/', SectionRoutes);
+app.use('/api', QuestionRoutes);
+app.use('/api/', HeadingRoutes);
+app.use('/api', AuditSheetRoutes);
 
 mongoose.connect('mongodb+srv://prestigeproformation:prestigeproformation@cluster0.guzmh23.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
     console.log('Connected to MongoDB');

@@ -1,14 +1,31 @@
 const mongoose = require("mongoose");
 
-const AuditeSchema = new mongoose.Schema({
-  Audite: {
+const auditSheetSchema = new mongoose.Schema({
+  user: {
     type: String,
-    ref: "Question",
+    ref: 'User',
     required: true,
   },
-  
+  companySheet: {
+    type: String,
+    ref: 'CompanySheet',
+    required: true,
+  },
+  answers: [
+    {
+      question: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Question',
+        required: true,
+      },
+      answer: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
-const Audite = mongoose.model("Audite", AuditeSchema);
+const AuditSheet = mongoose.model("AuditSheet", auditSheetSchema);
 
-module.exports = Audite;
+module.exports = AuditSheet;
