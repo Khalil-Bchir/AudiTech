@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const UserRoutes = require ('./App/Routers/UserRoutes');
 const CompanySheetRoutes = require ('./App/Routers/CompanySheetRoutes');
-const LogRoutes = require ('./App/Routers/logRoutes');
+const LogRoutes = require ('./App/Routers/LogRoutes');
 const SectionRoutes = require ('./App/Routers/SectionRoutes');
 const QuestionRoutes = require ('./App/Routers/QuestionRoutes');
 const HeadingRoutes = require ('./App/Routers/HeadingRoutes');
@@ -23,6 +23,11 @@ app.use('/api/', SectionRoutes);
 app.use('/api', QuestionRoutes);
 app.use('/api/', HeadingRoutes);
 app.use('/api', AuditSheetRoutes);
+
+// Welcome Page for /api/
+app.get('/api/', (req, res) => {
+    res.send('Welcome to the /api/ route!');
+});
 
 mongoose.connect('mongodb+srv://prestigeproformation:prestigeproformation@cluster0.guzmh23.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then((res) => {
     console.log('Connected to MongoDB');
